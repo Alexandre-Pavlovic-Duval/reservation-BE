@@ -12,12 +12,16 @@ router.post("/", (req, res) => {
     departureToConvert = tripsToSend.split(" ")
     departure = departureToConvert[0]
     arrival = departureToConvert[2]
+    
+    priceToConvert = priceToSend.split("€")
+    price = priceToConvert[0]
+    console.log("test", priceToSend);
 
     let tripToCart = new Cart({
         departure: departure,
         arrival: arrival,
         date: hoursToSend,
-        price: priceToSend,
+        price: price,
     });
 
     tripToCart.save()
