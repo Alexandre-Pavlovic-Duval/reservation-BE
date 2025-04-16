@@ -3,27 +3,36 @@ var router = express.Router();
 
 require("../models/connection"); 
 const Trip = require("../models/trips");
+const Cart = require("../models/cart");
 
 
 router.post("/", (req, res) => { 
-    let departure = req.body.departure; 
-    let arrival = req.body.arrival; 
+    let { tripsToSend, hoursToSend, priceToSend } = req.body
 
-    Trip.find({departure, arrival}) 
-    .then(data => { 
-        res.json({trips : data}) 
-    }) 
+    departureToConvert = tripsToSend.split(" ")
+    departure = departureToConvert[0]
+    arrival = departureToConvert[2]
+
+    let tripToCart = new Cart({
+        departure: departure,
+        arrival: arrival,
+        date: hoursToSend,
+        price: priceToSend,
+    });
+
+    tripToCart.save()
+    .then(
+        res.json({tripToCart})
+    );
+
 }); 
 
 router.get('/', (req, res) => {
     Trip.find()
     .then(data => {
-        console.log(data);
         res.json({trips: data})
     })
 });
-
-
 
 
 module.exports = router;
