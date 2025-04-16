@@ -15,7 +15,6 @@ router.post("/", (req, res) => {
     
     priceToConvert = priceToSend.split("€")
     price = priceToConvert[0]
-    console.log("test", priceToSend);
 
     let tripToCart = new Cart({
         departure: departure,
