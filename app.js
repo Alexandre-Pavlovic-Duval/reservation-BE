@@ -10,7 +10,6 @@ var indexRouter = require('./routes/index');
 var cartRouter = require('./routes/cart')
 var usersRouter = require('./routes/users');
 var tripsRouter = require('./routes/trips');
-var bookingsRouter = require('./routes/bookings');
 
 var app = express();
 const cors = require("cors");
@@ -26,6 +25,5 @@ app.use('/', indexRouter);
 app.use('/cart', cartRouter);
 app.use('/users', usersRouter);
 app.use('/trips', tripsRouter);
-app.use('/bookings', bookingsRouter);
 
 module.exports = app;
